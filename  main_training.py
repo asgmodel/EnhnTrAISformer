@@ -1,0 +1,97 @@
+### main.py
+import os
+import pickle
+import torch
+import numpy as np
+import matplotlib.pyplot as plt
+from tqdm import tqdm
+
+import models, trainers, datasets, utils
+from config_trAISformer import Config
+from data_loader import load_datasets
+from trainers import setup_trainer
+
+def main():
+    cf = Config()
+    utils.set_seed(42)
+    torch.pi = torch.acos(torch.zeros(1)).item() * 2
+    
+    # Logging setup
+    if not os.path.isdir(cf.savedir):
+        os.makedirs(cf.savedir)
+        print('======= Create directory to store trained models: ' + cf.savedir)
+    else:
+        print('======= Directory to store trained models: ' + cf.savedir)
+    utils.new_log(cf.savedir, "log")
+    
+    # Load datasets
+    aisdatasets, aisdls = load_datasets(cf)
+    cf.final_tokens = 2 * len(aisdatasets["train"]) * cf.max_seqlen
+    
+    # Model setup
+    model = models.TrAISformer(cf, partition_model=None)
+    trainer = setup_trainer(model, aisdatasets, aisdls, cf)
+    
+    # Training
+    if cf.retrain:
+        trainer.train()
+    
+    # Evaluation
+    model.load_state_dict(torch.load(cf.ckpt_path))
+    evaluate_model(model, aisdls, cf)
+
+def evaluate_model(model, aisdls, cf):
+    v_ranges = torch.tensor([2, 3, 0, 0]).to(cf.device)
+    v_roi_min = torch.tensor([model.lat_min, -7, 0, 0]).to(cf.device)
+    max_seqlen = cf.init_seqlen + 6 * 4
+    
+    model.eval()
+    l_min_errors, l_mean_errors, l_masks = [], [], []
+    
+    with torch.no_grad():
+        for it, (seqs, masks, seqlens, mmsis, time_starts) in tqdm(enumerate(aisdls["test"]), total=len(aisdls["test"])):
+            seqs_init = seqs[:, :cf.init_seqlen, :].to(cf.device)
+            masks = masks[:, :max_seqlen].to(cf.device)
+            batchsize = seqs.shape[0]
+            error_ens = torch.zeros((batchsize, max_seqlen - cf.init_seqlen, cf.n_samples)).to(cf.device)
+            
+            for i_sample in range(cf.n_samples):
+                preds = trainers.sample(model, seqs_init, max_seqlen - cf.init_seqlen, temperature=1.0, sample=True,
+                                        sample_mode=cf.sample_mode, r_vicinity=cf.r_vicinity, top_k=cf.top_k)
+                inputs = seqs[:, :max_seqlen, :].to(cf.device)
+                input_coords = (inputs * v_ranges + v_roi_min) * torch.pi / 180
+                pred_coords = (preds * v_ranges + v_roi_min) * torch.pi / 180
+                d = utils.haversine(input_coords, pred_coords) * masks
+                error_ens[:, :, i_sample] = d[:, cf.init_seqlen:]
+            
+            l_min_errors.append(error_ens.min(dim=-1))
+            l_mean_errors.append(error_ens.mean(dim=-1))
+            l_masks.append(masks[:, cf.init_seqlen:])
+    
+    plot_errors(l_min_errors, l_masks, cf)
+
+def plot_errors(l_min_errors, l_masks, cf):
+    l_min = [x.values for x in l_min_errors]
+    m_masks = torch.cat(l_masks, dim=0)
+    min_errors = torch.cat(l_min, dim=0) * m_masks
+    pred_errors = min_errors.sum(dim=0) / m_masks.sum(dim=0)
+    pred_errors = pred_errors.detach().cpu().numpy()
+    
+    plt.figure(figsize=(9, 6), dpi=150)
+    v_times = np.arange(len(pred_errors)) / 6
+    plt.plot(v_times, pred_errors)
+    
+    for i, timestep in enumerate([6, 12, 18]):
+        plt.plot(i + 1, pred_errors[timestep], "o")
+        plt.plot([i + 1, i + 1], [0, pred_errors[timestep]], "r")
+        plt.plot([0, i + 1], [pred_errors[timestep], pred_errors[timestep]], "r")
+        plt.text(i + 1.12, pred_errors[timestep] - 0.5, "{:.4f}".format(pred_errors[timestep]), fontsize=10)
+    
+    plt.xlabel("Time (hours)")
+    plt.ylabel("Prediction errors (km)")
+    plt.xlim([0, 12])
+    plt.ylim([0, 20])
+    plt.savefig(cf.savedir + "prediction_error.png")
+
+if __name__ == "__main__":
+    main()
