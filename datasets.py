@@ -68,6 +68,68 @@ class FourHotEncoder:
 
     def decode_batch(self, encoded_batch):
         return np.array([self.decode(enc) for enc in encoded_batch])
+
+
+class FourHotEncoderFFT:
+    def __init__(self, lat_range, lon_range, sog_max, n_bins, sigma_scale=0.001):
+        self.sigma_scale = sigma_scale
+        self.lat_bins = np.linspace(lat_range[0], lat_range[1], n_bins[0])
+        self.lon_bins = np.linspace(lon_range[0], lon_range[1], n_bins[1])
+        self.sog_bins = np.linspace(0, sog_max, n_bins[2])
+        self.cog_bins = np.linspace(0, 360, n_bins[3])
+
+    def gaussian_encoding(self, value, bins, sigma):
+        encoding = np.exp(- (value - bins)**2 / (2 * sigma**2))
+        return encoding / encoding.sum()
+
+    def encode(self, x):
+        lat_sigma = (self.lat_bins[1] - self.lat_bins[0]) * self.sigma_scale
+        lon_sigma = (self.lon_bins[1] - self.lon_bins[0]) * self.sigma_scale
+        sog_sigma = (self.sog_bins[1] - self.sog_bins[0]) * self.sigma_scale
+        cog_sigma = (self.cog_bins[1] - self.cog_bins[0]) * self.sigma_scale
+
+        lat_enc = self.gaussian_encoding(x[0], self.lat_bins, lat_sigma)
+        lon_enc = self.gaussian_encoding(x[1], self.lon_bins, lon_sigma)
+        sog_enc = self.gaussian_encoding(x[2], self.sog_bins, sog_sigma)
+        cog_enc = self.gaussian_encoding(x[3], self.cog_bins, cog_sigma)
+
+        # تحويل إلى المجال الترددي باستخدام FFT
+        lat_enc_freq = np.fft.fft(lat_enc)
+        lon_enc_freq = np.fft.fft(lon_enc)
+        sog_enc_freq = np.fft.fft(sog_enc)
+        cog_enc_freq = np.fft.fft(cog_enc)
+
+        return np.concatenate([lat_enc_freq, lon_enc_freq, sog_enc_freq, cog_enc_freq])
+
+    def decode(self, encoded):
+        n_lat = len(self.lat_bins)
+        n_lon = len(self.lon_bins)
+        n_sog = len(self.sog_bins)
+        n_cog = len(self.cog_bins)
+
+        # إعادة التحويل من المجال الترددي باستخدام IFFT
+        lat_enc_freq = encoded[:n_lat]
+        lon_enc_freq = encoded[n_lat:n_lat+n_lon]
+        sog_enc_freq = encoded[n_lat+n_lon:n_lat+n_lon+n_sog]
+        cog_enc_freq = encoded[n_lat+n_lon+n_sog:]
+
+        lat_enc = np.fft.ifft(lat_enc_freq).real
+        lon_enc = np.fft.ifft(lon_enc_freq).real
+        sog_enc = np.fft.ifft(sog_enc_freq).real
+        cog_enc = np.fft.ifft(cog_enc_freq).real
+
+        lat = np.sum(lat_enc * self.lat_bins)
+        lon = np.sum(lon_enc * self.lon_bins)
+        sog = np.sum(sog_enc * self.sog_bins)
+        cog = np.sum(cog_enc * self.cog_bins)
+
+        return np.round(np.array([lat, lon, sog, cog]), 4)
+
+    def encode_batch(self, X):
+        return np.array([self.encode(x) for x in X])
+
+    def decode_batch(self, encoded_batch):
+        return np.array([self.decode(enc) for enc in encoded_batch])
         
 class AISDataset(Dataset):
     """Customized Pytorch dataset.
