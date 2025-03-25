@@ -1,23 +1,3 @@
-# coding=utf-8
-# Copyright 2021, Duong Nguyen
-#
-# Licensed under the CECILL-C License;
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#   http://www.cecill.info
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
-"""Boilerplate for training a neural network.
-
-References:
-    https://github.com/karpathy/minGPT
-"""
 
 import os
 import math
@@ -33,7 +13,7 @@ from torch.optim.lr_scheduler import LambdaLR
 from torch.utils.data.dataloader import DataLoader
 from torch.nn import functional as F
 import utils
-
+import wandb
 # from trAISformer import TB_LOG
 
 logger = logging.getLogger(__name__)
@@ -240,14 +220,16 @@ class Trainer:
                             for name, params in model.res_pred.named_parameters():
                                 tb.add_histogram(f"res_pred.{name}", params, epoch * n_batches + it)
                                 tb.add_histogram(f"res_pred.{name}.grad", params.grad, epoch * n_batches + it)
-
+            
             if is_train:
+                wandb.log({f"{split}loss": d_loss / d_n, "lr": lr,"degloss":d_reg_loss / d_n})
                 if return_loss_tuple:
                     logging.info(
                         f"{split}, epoch {epoch + 1}, loss {d_loss / d_n:.5f}, {d_reg_loss / d_n:.5f}, lr {lr:e}.")
                 else:
                     logging.info(f"{split}, epoch {epoch + 1}, loss {d_loss / d_n:.5f}, lr {lr:e}.")
             else:
+                wandb.log({f"{split}loss": d_loss / d_n})
                 if return_loss_tuple:
                     logging.info(f"{split}, epoch {epoch + 1}, loss {d_loss / d_n:.5f}.")
                 else:
@@ -294,23 +276,74 @@ class Trainer:
                            top_k=self.config.top_k)
 
             img_path = os.path.join(self.savedir, f'epoch_{epoch + 1:03d}.jpg')
-            plt.figure(figsize=(9, 6), dpi=150)
-            cmap = plt.cm.get_cmap("jet")
+
+            # plt.figure(figsize=(9, 6), dpi=150)
+            # cmap = plt.cm.get_cmap("jet")
+            # preds_np = preds.detach().cpu().numpy()
+            # inputs_np = seqs.detach().cpu().numpy()
+            # for idx in range(n_plots):
+            #     c = cmap(float(idx) / (n_plots))
+            #     try:
+            #         seqlen = seqlens[idx].item()
+            #     except:
+            #         continue
+            #     plt.plot(inputs_np[idx][:init_seqlen, 1], inputs_np[idx][:init_seqlen, 0], color=c)
+            #     plt.plot(inputs_np[idx][:init_seqlen, 1], inputs_np[idx][:init_seqlen, 0], "o", markersize=3, color=c)
+            #     plt.plot(inputs_np[idx][:seqlen, 1], inputs_np[idx][:seqlen, 0], linestyle="-.", color=c)
+            #     plt.plot(preds_np[idx][init_seqlen:, 1], preds_np[idx][init_seqlen:, 0], "x", markersize=4, color=c)
+            # plt.xlim([-0.05, 1.05])
+            # plt.ylim([-0.05, 1.05])
+            # plt.savefig(img_path, dpi=150)
+            # if epoch%5:
+            #    wandb.log({f"samples": wandb.Image(plt)})
+            # plt.close()
+            fig, ax = plt.subplots(figsize=(10, 7), dpi=150)
+
+            # اختيار كولور ماب احترافي
+            cmap = plt.cm.get_cmap("plasma")  
             preds_np = preds.detach().cpu().numpy()
             inputs_np = seqs.detach().cpu().numpy()
+
             for idx in range(n_plots):
-                c = cmap(float(idx) / (n_plots))
+                c = cmap(float(idx) / (n_plots))  # اختيار لون متدرج لكل مسار
                 try:
                     seqlen = seqlens[idx].item()
                 except:
                     continue
-                plt.plot(inputs_np[idx][:init_seqlen, 1], inputs_np[idx][:init_seqlen, 0], color=c)
-                plt.plot(inputs_np[idx][:init_seqlen, 1], inputs_np[idx][:init_seqlen, 0], "o", markersize=3, color=c)
-                plt.plot(inputs_np[idx][:seqlen, 1], inputs_np[idx][:seqlen, 0], linestyle="-.", color=c)
-                plt.plot(preds_np[idx][init_seqlen:, 1], preds_np[idx][init_seqlen:, 0], "x", markersize=4, color=c)
-            plt.xlim([-0.05, 1.05])
-            plt.ylim([-0.05, 1.05])
-            plt.savefig(img_path, dpi=150)
+                
+                # رسم الإدخالات الأولية
+                ax.plot(inputs_np[idx][:init_seqlen, 1], inputs_np[idx][:init_seqlen, 0], 
+                        color=c, linestyle="-", linewidth=2.5, alpha=0.8, label="Initial Path" if idx == 0 else "")
+
+                ax.scatter(inputs_np[idx][:init_seqlen, 1], inputs_np[idx][:init_seqlen, 0], 
+                          color=c, s=25, edgecolor="black", alpha=0.9, label="Input Points" if idx == 0 else "")
+
+                # رسم الإدخالات الكاملة
+                ax.plot(inputs_np[idx][:seqlen, 1], inputs_np[idx][:seqlen, 0], 
+                        linestyle="--", linewidth=2, color=c, alpha=0.6, label="Full Input" if idx == 0 else "")
+
+                # رسم التوقعات المستقبلية
+                ax.scatter(preds_np[idx][init_seqlen:, 1], preds_np[idx][init_seqlen:, 0], 
+                          marker="x", s=50, color=c, alpha=0.9, label="Predicted Points" if idx == 0 else "")
+
+            # تخصيص الحدود
+            ax.set_xlim([-0.05, 0.2])
+            ax.set_ylim([-0.05,0.2])
+
+            # تحسين المظهر
+            ax.set_xlabel("Longitude", fontsize=14, fontweight="bold")
+            ax.set_ylabel("Latitude", fontsize=14, fontweight="bold")
+            ax.set_title("Ship Trajectory Prediction", fontsize=16, fontweight="bold", color="darkblue")
+            ax.legend(loc="upper right", fontsize=12, frameon=True, facecolor="white", edgecolor="black")
+            ax.grid(True, linestyle=":", linewidth=0.7, alpha=0.8)
+
+            # حفظ الصورة بجودة عالية
+            plt.savefig(img_path, dpi=300, bbox_inches="tight")
+
+            # تسجيلها في Weights & Biases
+            if epoch % 5 == 0:
+                wandb.log({"samples": wandb.Image(fig)})
+
             plt.close()
 
         # Final state
