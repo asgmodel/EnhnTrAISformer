@@ -1,10 +1,10 @@
-### main.py
 import os
 import pickle
 import torch
 import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
+import wandb
 
 import models, trainers, datasets, utils
 from config_trAISformer import Config
@@ -15,6 +15,9 @@ def main():
     cf = Config()
     utils.set_seed(42)
     torch.pi = torch.acos(torch.zeros(1)).item() * 2
+    
+    # Initialize Weights & Biases
+    wandb.init(project="eEnhance Traisformer", config=cf.__dict__)
     
     # Logging setup
     if not os.path.isdir(cf.savedir):
@@ -39,6 +42,8 @@ def main():
     # Evaluation
     model.load_state_dict(torch.load(cf.ckpt_path))
     evaluate_model(model, aisdls, cf)
+    
+    wandb.finish()
 
 def evaluate_model(model, aisdls, cf):
     v_ranges = torch.tensor([2, 3, 0, 0]).to(cf.device)
@@ -91,6 +96,10 @@ def plot_errors(l_min_errors, l_masks, cf):
     plt.ylabel("Prediction errors (km)")
     plt.xlim([0, 12])
     plt.ylim([0, 20])
+    
+    # Log plot to wandb
+    wandb.log({"Prediction Error Plot": wandb.Image(plt)})
+    
     plt.savefig(cf.savedir + "prediction_error.png")
 
 if __name__ == "__main__":
