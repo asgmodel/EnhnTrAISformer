@@ -34,7 +34,7 @@ from torch.utils.data.dataloader import DataLoader
 from torch.nn import functional as F
 import utils
 
-from trAISformer import TB_LOG
+# from trAISformer import TB_LOG
 
 logger = logging.getLogger(__name__)
 
@@ -223,9 +223,9 @@ class Trainer:
 
                     # report progress
                     pbar.set_description(f"epoch {epoch + 1} iter {it}: loss {loss.item():.5f}. lr {lr:e}")
-
+                    
                     # tb logging
-                    if TB_LOG:
+                    if config.tb_log:
                         tb.add_scalar("loss",
                                       loss.item(),
                                       epoch * n_batches + it)
@@ -319,3 +319,9 @@ class Trainer:
         logging.info(f"Last epoch: {epoch:03d}, saving model to {self.config.ckpt_path}")
         save_path = self.config.ckpt_path.replace("model.pt", f"model_{epoch + 1:03d}.pt")
         torch.save(raw_model.state_dict(), save_path)
+
+
+
+
+def setup_trainer(model, aisdatasets, aisdls, cf):
+    return Trainer(model, aisdatasets["train"], aisdatasets["valid"], cf, savedir=cf.savedir, device=cf.device, aisdls=aisdls, INIT_SEQLEN=cf.init_seqlen)
