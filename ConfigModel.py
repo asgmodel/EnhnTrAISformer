@@ -1,20 +1,4 @@
-# coding=utf-8
-# Copyright 2021, Duong Nguyen
-#
-# Licensed under the CECILL-C License;
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#   http://www.cecill.info
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
 
-"""Configuration flags to run the main script.
-"""
 
 import os
 import pickle
@@ -24,7 +8,8 @@ import torch
 class Config():
     retrain = True
     tb_log = False
-    device = torch.device("cuda:0")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 #     device = torch.device("cpu")
     
     max_epochs = 50

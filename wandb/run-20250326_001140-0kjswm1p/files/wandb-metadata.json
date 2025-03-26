@@ -1,0 +1,31 @@
+{
+  "os": "Linux-6.1.85+-x86_64-with-glibc2.35",
+  "python": "CPython 3.11.11",
+  "startedAt": "2025-03-26T00:11:40.532858Z",
+  "program": "/content/EnhnTrAISformer/main_training.py",
+  "codePath": "main_training.py",
+  "git": {
+    "remote": "https://github.com/asgmodel/EnhnTrAISformer",
+    "commit": "aede8766eb8d0aeb0339442cf410a91eb0752d6b"
+  },
+  "email": "modelasg@gmail.com",
+  "root": "/content/EnhnTrAISformer",
+  "host": "84f4a22cc185",
+  "executable": "/usr/bin/python3",
+  "codePathLocal": "main_training.py",
+  "cpu_count": 1,
+  "cpu_count_logical": 2,
+  "disk": {
+    "/": {
+      "total": "115658190848",
+      "used": "39717679104"
+    }
+  },
+  "memory": {
+    "total": "13609431040"
+  },
+  "cpu": {
+    "count": 1,
+    "countLogical": 2
+  }
+}

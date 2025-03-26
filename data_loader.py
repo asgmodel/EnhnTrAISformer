@@ -4,7 +4,7 @@ import numpy as np
 from torch.utils.data import DataLoader
 import datasets
 
-def load_datasets(cf,moving_threshold = 0.05):
+def load_datasets(cf,moving_threshold = 0.005):
     
     l_pkl_filenames = [cf.trainset_name, cf.validset_name, cf.testset_name]
     Data, aisdatasets, aisdls = {}, {}, {}

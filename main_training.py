@@ -6,10 +6,10 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 import wandb
 
-import models, trainers, datasets, utils
-from config_trAISformer import Config
+import models, utils_training, datasets, utils
+from ConfigModel import Config
 from data_loader import load_datasets
-from trainers import setup_trainer
+from utils_training import setup_trainer
 
 def main():
     cf = Config()
