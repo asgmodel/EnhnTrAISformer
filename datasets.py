@@ -182,8 +182,8 @@ class AISDataset(Dataset):
         
         seqlen = torch.tensor(seqlen, dtype=torch.int)
         mmsi =  torch.tensor(V["mmsi"], dtype=torch.int)
-        time_start = V["traj"][0, 4].clone().detach().to(torch.int)#torch.tensor(V["traj"][0,4], dtype=torch.int)
-        
+        time_start = torch.tensor(V["traj"][0,4], dtype=torch.int)
+        #V["traj"][0, 4].clone().detach().to(torch.int)#
         return seq , mask, seqlen, mmsi, time_start
     
 class AISDataset_grad(Dataset):

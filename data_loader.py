@@ -27,5 +27,5 @@ def load_datasets(cf,moving_threshold = 0.005):
         aisdatasets[phase] = dataset_class(Data[phase], max_seqlen=cf.max_seqlen + 1, device=cf.device)
         shuffle = phase != "test"
         aisdls[phase] = DataLoader(aisdatasets[phase], batch_size=cf.batch_size, shuffle=shuffle)
-    
+    # aisdls["valid"]=aisdls["train"]
     return aisdatasets, aisdls

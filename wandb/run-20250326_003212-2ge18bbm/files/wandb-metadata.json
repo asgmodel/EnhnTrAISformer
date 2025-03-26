@@ -1,0 +1,42 @@
+{
+  "os": "Linux-6.1.85+-x86_64-with-glibc2.35",
+  "python": "CPython 3.11.11",
+  "startedAt": "2025-03-26T00:32:12.164346Z",
+  "program": "/content/EnhnTrAISformer/main_training.py",
+  "codePath": "main_training.py",
+  "git": {
+    "remote": "https://github.com/asgmodel/EnhnTrAISformer",
+    "commit": "f31f6ed90a22a5bef219ed400fd5bcea020ac6dc"
+  },
+  "email": "modelasg@gmail.com",
+  "root": "/content/EnhnTrAISformer",
+  "host": "e9a96a7064a0",
+  "executable": "/usr/bin/python3",
+  "codePathLocal": "main_training.py",
+  "cpu_count": 1,
+  "cpu_count_logical": 2,
+  "gpu": "Tesla T4",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "120942624768",
+      "used": "40475095040"
+    }
+  },
+  "memory": {
+    "total": "13609431040"
+  },
+  "cpu": {
+    "count": 1,
+    "countLogical": 2
+  },
+  "gpu_nvidia": [
+    {
+      "name": "Tesla T4",
+      "memoryTotal": "16106127360",
+      "cudaCores": 2560,
+      "architecture": "Turing"
+    }
+  ],
+  "cudaVersion": "12.4"
+}

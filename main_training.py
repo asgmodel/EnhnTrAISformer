@@ -7,12 +7,12 @@ from tqdm import tqdm
 import wandb
 
 import models, utils_training, datasets, utils
-from ConfigModel import Config
+from ConfigModel import ConfigEnhancTrAISformer
 from data_loader import load_datasets
 from utils_training import setup_trainer
-
+from models import EnhancTrAISformer
 def main():
-    cf = Config()
+    cf = ConfigEnhancTrAISformer()
     utils.set_seed(42)
     torch.pi = torch.acos(torch.zeros(1)).item() * 2
     
@@ -32,7 +32,7 @@ def main():
     cf.final_tokens = 2 * len(aisdatasets["train"]) * cf.max_seqlen
     
     # Model setup
-    model = models.TrAISformer(cf, partition_model=None)
+    model =EnhancTrAISformer(cf, partition_model=None)
     trainer = setup_trainer(model, aisdatasets, aisdls, cf)
     
     # Training

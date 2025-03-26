@@ -1,0 +1,126 @@
+======= Create directory to store trained models: ./results/ct_dma-pos-pos_vicinity-10-40-blur-True-False-2-1.0-data_size-100-100-30-360-embd_size-256-256-128-128-head-8-8-bs-32-lr-0.0006-seqlen-18-120/
+2025-03-26 00:28:01,698 - models - number of parameters: 5.735092e+07
+/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+epoch 1 iter 15: loss 5.05333. lr 5.804990e-04: 100% 16/16 [00:06<00:00,  2.43it/s]
+2025-03-26 00:28:09,672 - root - Training, epoch 1, loss 8.33891, lr 5.804990e-04.
+2025-03-26 00:28:10,058 - root - Valid, epoch 1, loss 6.35251.
+2025-03-26 00:28:10,059 - root - Best epoch: 001, saving model to ./results/ct_dma-pos-pos_vicinity-10-40-blur-True-False-2-1.0-data_size-100-100-30-360-embd_size-256-256-128-128-head-8-8-bs-32-lr-0.0006-seqlen-18-120/model.pt
+2025-03-26 00:28:12,991 - numexpr.utils - NumExpr defaulting to 2 threads.
+/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+epoch 2 iter 15: loss 4.30446. lr 4.543956e-04: 100% 16/16 [00:06<00:00,  2.61it/s]
+2025-03-26 00:28:19,503 - root - Training, epoch 2, loss 5.63042, lr 4.543956e-04.
+2025-03-26 00:28:19,978 - root - Valid, epoch 2, loss 5.52860.
+2025-03-26 00:28:19,980 - root - Best epoch: 002, saving model to ./results/ct_dma-pos-pos_vicinity-10-40-blur-True-False-2-1.0-data_size-100-100-30-360-embd_size-256-256-128-128-head-8-8-bs-32-lr-0.0006-seqlen-18-120/model.pt
+/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+epoch 3 iter 15: loss 4.77146. lr 2.619886e-04: 100% 16/16 [00:06<00:00,  2.56it/s]
+2025-03-26 00:28:28,735 - root - Training, epoch 3, loss 4.92740, lr 2.619886e-04.
+2025-03-26 00:28:29,161 - root - Valid, epoch 3, loss 4.99137.
+2025-03-26 00:28:29,162 - root - Best epoch: 003, saving model to ./results/ct_dma-pos-pos_vicinity-10-40-blur-True-False-2-1.0-data_size-100-100-30-360-embd_size-256-256-128-128-head-8-8-bs-32-lr-0.0006-seqlen-18-120/model.pt
+/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+epoch 4 iter 15: loss 3.18284. lr 8.590517e-05: 100% 16/16 [00:06<00:00,  2.52it/s]
+2025-03-26 00:28:38,253 - root - Training, epoch 4, loss 4.40062, lr 8.590517e-05.
+2025-03-26 00:28:38,676 - root - Valid, epoch 4, loss 4.51424.
+2025-03-26 00:28:38,677 - root - Best epoch: 004, saving model to ./results/ct_dma-pos-pos_vicinity-10-40-blur-True-False-2-1.0-data_size-100-100-30-360-embd_size-256-256-128-128-head-8-8-bs-32-lr-0.0006-seqlen-18-120/model.pt
+/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+epoch 5 iter 15: loss 0.32042. lr 6.000000e-05: 100% 16/16 [00:06<00:00,  2.49it/s]
+2025-03-26 00:28:47,483 - root - Training, epoch 5, loss 4.02665, lr 6.000000e-05.
+2025-03-26 00:28:47,896 - root - Valid, epoch 5, loss 4.12770.
+2025-03-26 00:28:47,897 - root - Best epoch: 005, saving model to ./results/ct_dma-pos-pos_vicinity-10-40-blur-True-False-2-1.0-data_size-100-100-30-360-embd_size-256-256-128-128-head-8-8-bs-32-lr-0.0006-seqlen-18-120/model.pt
+/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+epoch 6 iter 15: loss 4.44537. lr 6.000000e-05: 100% 16/16 [00:06<00:00,  2.45it/s]
+2025-03-26 00:28:56,766 - root - Training, epoch 6, loss 3.70369, lr 6.000000e-05.
+2025-03-26 00:28:57,299 - root - Valid, epoch 6, loss 4.00037.
+2025-03-26 00:28:57,301 - root - Best epoch: 006, saving model to ./results/ct_dma-pos-pos_vicinity-10-40-blur-True-False-2-1.0-data_size-100-100-30-360-embd_size-256-256-128-128-head-8-8-bs-32-lr-0.0006-seqlen-18-120/model.pt
+/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+epoch 7 iter 15: loss 3.97463. lr 1.988363e-04: 100% 16/16 [00:06<00:00,  2.40it/s]
+2025-03-26 00:29:07,053 - root - Training, epoch 7, loss 3.49156, lr 1.988363e-04.
+2025-03-26 00:29:07,487 - root - Valid, epoch 7, loss 3.84390.
+2025-03-26 00:29:07,489 - root - Best epoch: 007, saving model to ./results/ct_dma-pos-pos_vicinity-10-40-blur-True-False-2-1.0-data_size-100-100-30-360-embd_size-256-256-128-128-head-8-8-bs-32-lr-0.0006-seqlen-18-120/model.pt
+/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+epoch 8 iter 15: loss 3.71580. lr 3.954212e-04: 100% 16/16 [00:06<00:00,  2.39it/s]
+2025-03-26 00:29:16,803 - root - Training, epoch 8, loss 3.27850, lr 3.954212e-04.
+2025-03-26 00:29:17,241 - root - Valid, epoch 8, loss 3.68025.
+2025-03-26 00:29:17,243 - root - Best epoch: 008, saving model to ./results/ct_dma-pos-pos_vicinity-10-40-blur-True-False-2-1.0-data_size-100-100-30-360-embd_size-256-256-128-128-head-8-8-bs-32-lr-0.0006-seqlen-18-120/model.pt
+/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+epoch 9 iter 15: loss 3.66249. lr 5.510284e-04: 100% 16/16 [00:06<00:00,  2.40it/s]
+2025-03-26 00:29:26,366 - root - Training, epoch 9, loss 3.16873, lr 5.510284e-04.
+2025-03-26 00:29:26,814 - root - Valid, epoch 9, loss 3.88295.
+/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+epoch 10 iter 15: loss 3.88180. lr 5.988340e-04: 100% 16/16 [00:06<00:00,  2.38it/s]
+2025-03-26 00:29:35,450 - root - Training, epoch 10, loss 3.14437, lr 5.988340e-04.
+2025-03-26 00:29:36,057 - root - Valid, epoch 10, loss 3.66450.
+2025-03-26 00:29:36,058 - root - Best epoch: 010, saving model to ./results/ct_dma-pos-pos_vicinity-10-40-blur-True-False-2-1.0-data_size-100-100-30-360-embd_size-256-256-128-128-head-8-8-bs-32-lr-0.0006-seqlen-18-120/model.pt
+/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+epoch 11 iter 15: loss 3.67834. lr 5.183084e-04: 100% 16/16 [00:06<00:00,  2.36it/s]
+2025-03-26 00:29:45,803 - root - Training, epoch 11, loss 2.99961, lr 5.183084e-04.
+2025-03-26 00:29:46,280 - root - Valid, epoch 11, loss 3.63899.
+2025-03-26 00:29:46,282 - root - Best epoch: 011, saving model to ./results/ct_dma-pos-pos_vicinity-10-40-blur-True-False-2-1.0-data_size-100-100-30-360-embd_size-256-256-128-128-head-8-8-bs-32-lr-0.0006-seqlen-18-120/model.pt
+/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+epoch 12 iter 15: loss 2.09441. lr 3.440324e-04: 100% 16/16 [00:06<00:00,  2.35it/s]
+2025-03-26 00:29:56,299 - root - Training, epoch 12, loss 2.86948, lr 3.440324e-04.
+2025-03-26 00:29:56,771 - root - Valid, epoch 12, loss 3.41495.
+2025-03-26 00:29:56,773 - root - Best epoch: 012, saving model to ./results/ct_dma-pos-pos_vicinity-10-40-blur-True-False-2-1.0-data_size-100-100-30-360-embd_size-256-256-128-128-head-8-8-bs-32-lr-0.0006-seqlen-18-120/model.pt
+/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+epoch 13 iter 15: loss 2.57284. lr 1.508471e-04: 100% 16/16 [00:06<00:00,  2.30it/s]
+2025-03-26 00:30:06,495 - root - Training, epoch 13, loss 2.71874, lr 1.508471e-04.
+2025-03-26 00:30:06,967 - root - Valid, epoch 13, loss 3.28115.
+2025-03-26 00:30:06,969 - root - Best epoch: 013, saving model to ./results/ct_dma-pos-pos_vicinity-10-40-blur-True-False-2-1.0-data_size-100-100-30-360-embd_size-256-256-128-128-head-8-8-bs-32-lr-0.0006-seqlen-18-120/model.pt
+/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+epoch 14 iter 15: loss 2.29922. lr 6.000000e-05: 100% 16/16 [00:06<00:00,  2.31it/s]
+2025-03-26 00:30:16,315 - root - Training, epoch 14, loss 2.56783, lr 6.000000e-05.
+2025-03-26 00:30:16,847 - root - Valid, epoch 14, loss 3.11635.
+2025-03-26 00:30:16,848 - root - Best epoch: 014, saving model to ./results/ct_dma-pos-pos_vicinity-10-40-blur-True-False-2-1.0-data_size-100-100-30-360-embd_size-256-256-128-128-head-8-8-bs-32-lr-0.0006-seqlen-18-120/model.pt
+/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+epoch 15 iter 15: loss 2.67932. lr 6.000000e-05: 100% 16/16 [00:06<00:00,  2.30it/s]
+2025-03-26 00:30:26,242 - root - Training, epoch 15, loss 2.48511, lr 6.000000e-05.
+2025-03-26 00:30:26,709 - root - Valid, epoch 15, loss 3.15747.
+/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+epoch 16 iter 15: loss 2.50789. lr 1.261030e-04: 100% 16/16 [00:06<00:00,  2.32it/s]
+2025-03-26 00:30:35,834 - root - Training, epoch 16, loss 2.32864, lr 1.261030e-04.
+Traceback (most recent call last):
+  File "/content/EnhnTrAISformer/main_training.py", line 106, in <module>
+    main()
+  File "/content/EnhnTrAISformer/main_training.py", line 40, in main
+    trainer.train()
+  File "/content/EnhnTrAISformer/utils_training.py", line 182, in train
+    test_loss = run_epoch('Valid', epoch=epoch)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/EnhnTrAISformer/utils_training.py", line 85, in run_epoch
+    for it, (seqs, masks, seqlens, mmsis, time_starts) in pbar:
+  File "/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py", line 708, in __next__
+    data = self._next_data()
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py", line 1446, in _next_data
+    self._shutdown_workers()
+  File "/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py", line 1577, in _shutdown_workers
+    self._mark_worker_as_unavailable(worker_id, shutdown=True)
+  File "/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py", line 1521, in _mark_worker_as_unavailable
+    q.put(None)
+  File "/usr/lib/python3.11/multiprocessing/queues.py", line 94, in put
+    self._start_thread()
+  File "/usr/lib/python3.11/multiprocessing/queues.py", line 177, in _start_thread
+    self._thread.start()
+  File "/usr/lib/python3.11/threading.py", line 969, in start
+    self._started.wait()
+  File "/usr/lib/python3.11/threading.py", line 629, in wait
+    signaled = self._cond.wait(timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/threading.py", line 327, in wait
+    waiter.acquire()
+KeyboardInterrupt

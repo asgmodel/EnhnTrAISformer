@@ -1,0 +1,23 @@
+======= Directory to store trained models: ./results/ct_dma-pos-pos_vicinity-10-40-blur-True-False-2-1.0-data_size-250-270-30-72-embd_size-256-256-128-128-head-8-8-bs-32-lr-0.0006-seqlen-18-120/
+2025-03-26 00:26:36,999 - models - number of parameters: 5.742055e+07
+/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+epoch 1 iter 15: loss 4.58432. lr 5.804990e-04: 100% 16/16 [00:06<00:00,  2.33it/s]
+2025-03-26 00:26:45,440 - root - Training, epoch 1, loss 8.08858, lr 5.804990e-04.
+2025-03-26 00:26:45,825 - root - Valid, epoch 1, loss 5.86858.
+2025-03-26 00:26:45,826 - root - Best epoch: 001, saving model to ./results/ct_dma-pos-pos_vicinity-10-40-blur-True-False-2-1.0-data_size-250-270-30-72-embd_size-256-256-128-128-head-8-8-bs-32-lr-0.0006-seqlen-18-120/model.pt
+2025-03-26 00:26:48,841 - numexpr.utils - NumExpr defaulting to 2 threads.
+/usr/local/lib/python3.11/dist-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+epoch 2 iter 12: loss 4.63000. lr 5.990780e-04:  81% 13/16 [00:05<00:01,  2.17it/s]
+Traceback (most recent call last):
+  File "/content/EnhnTrAISformer/main_training.py", line 106, in <module>
+    main()
+  File "/content/EnhnTrAISformer/main_training.py", line 40, in main
+    trainer.train()
+  File "/content/EnhnTrAISformer/utils_training.py", line 180, in train
+    run_epoch('Training', epoch=epoch)
+  File "/content/EnhnTrAISformer/utils_training.py", line 126, in run_epoch
+    progress = float(self.tokens - config.warmup_tokens) / float(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

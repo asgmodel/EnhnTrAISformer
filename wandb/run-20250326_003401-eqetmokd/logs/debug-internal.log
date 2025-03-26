@@ -1,0 +1,15 @@
+{"time":"2025-03-26T00:34:01.819318944Z","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/content/EnhnTrAISformer/wandb/run-20250326_003401-eqetmokd/logs/debug-core.log"}
+{"time":"2025-03-26T00:34:01.922459086Z","level":"INFO","msg":"created new stream","id":"eqetmokd"}
+{"time":"2025-03-26T00:34:01.922491547Z","level":"INFO","msg":"stream: started","id":"eqetmokd"}
+{"time":"2025-03-26T00:34:01.922521624Z","level":"INFO","msg":"writer: Do: started","stream_id":"eqetmokd"}
+{"time":"2025-03-26T00:34:01.922664825Z","level":"INFO","msg":"handler: started","stream_id":"eqetmokd"}
+{"time":"2025-03-26T00:34:01.922709878Z","level":"INFO","msg":"sender: started","stream_id":"eqetmokd"}
+{"time":"2025-03-26T00:34:02.065027819Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-26T00:37:13.477961229Z","level":"INFO","msg":"stream: closing","id":"eqetmokd"}
+{"time":"2025-03-26T00:37:13.478006538Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-26T00:37:13.478759739Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-26T00:37:13.953140828Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-26T00:37:14.063807388Z","level":"INFO","msg":"handler: closed","stream_id":"eqetmokd"}
+{"time":"2025-03-26T00:37:14.063849152Z","level":"INFO","msg":"writer: Close: closed","stream_id":"eqetmokd"}
+{"time":"2025-03-26T00:37:14.063876777Z","level":"INFO","msg":"sender: closed","stream_id":"eqetmokd"}
+{"time":"2025-03-26T00:37:14.064034701Z","level":"INFO","msg":"stream: closed","id":"eqetmokd"}

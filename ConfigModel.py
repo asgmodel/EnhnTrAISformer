@@ -5,7 +5,7 @@ import pickle
 import torch
 
 
-class Config():
+class ConfigEnhancTrAISformer():
     retrain = True
     tb_log = False
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -13,7 +13,7 @@ class Config():
 #     device = torch.device("cpu")
     
     max_epochs = 50
-    batch_size = 32
+    batch_size = 64
     n_samples = 16
     
     init_seqlen = 18
@@ -26,10 +26,10 @@ class Config():
    
         # When mode == "grad" or "pos_grad", sog and cog are actually dlat and 
         # dlon    
-        lat_size = 250
-        lon_size = 270
+        lat_size = 100
+        lon_size = 100
         sog_size = 30
-        cog_size = 72
+        cog_size = 360
 
         
         n_lat_embd = 256
@@ -63,7 +63,7 @@ class Config():
     
     # Data flags
     #===================================================
-    datadir = f"./mydata/{dataset_name}/"
+    datadir = f"./data/{dataset_name}/"
     trainset_name = f"{dataset_name}_train.pkl"
     validset_name = f"{dataset_name}_valid.pkl"
     testset_name = f"{dataset_name}_test.pkl"

@@ -258,8 +258,8 @@ class Trainer:
                           marker="x", s=50, color=c, alpha=0.9, label="Predicted Points" if idx == 0 else "")
 
             # تخصيص الحدود
-            ax.set_xlim([-0.05, 0.2])
-            ax.set_ylim([-0.05,0.2])
+            ax.set_xlim([-0.05, 1.05])
+            ax.set_ylim([-0.05, 1.05])
 
             # تحسين المظهر
             ax.set_xlabel("Longitude", fontsize=14, fontweight="bold")
