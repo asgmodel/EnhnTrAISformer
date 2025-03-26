@@ -1,4 +1,4 @@
-# Vessel Route Optimization Model for ALS Data EnhnTrAISformer
+# Vessel Route Optimization generative  Model for ALS Data EnhnTrAISformer
 
 
 Pytorch implementation of TrAISformer---A generative transformer for AIS trajectory prediction (https://arxiv.org/abs/2109.03958).
