@@ -438,7 +438,8 @@ class EnALSModel(nn.Module):
         #     rnn_input_feature_dim=getattr(config, 'anomaly_rnn_input_feature_dim', None),
         #     anomaly_threshold=getattr(config, 'anomaly_threshold', 0.0001)
         )
-        self.anomaly_model.cuda()
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.anomaly_model.to(device)
 
         logger.info("Initialized EnALSModel integrating EnhancTrAISformer and MVRNNAnomalyQuality.")
         logger.info(f"  Anomaly Latent Dim: {config.anomaly_latent_dim}, State: {config.anomaly_state_type}, Loss Weight: {self.anomaly_loss_weight:.4f}")
